@@ -1,6 +1,13 @@
-const { gql } = require('apollo-server');
+const { gql } = require("apollo-server");
 
-module.exports = gql`
+module.exports = gql `
+  type File {
+    id: ID!
+    filename: String!
+    mimetype: String!
+    path: String!
+  }
+
   type Post {
     id: ID!
     body: String!
@@ -47,6 +54,7 @@ module.exports = gql`
     createComment(postId: String!, body: String!): Post!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
+    uploadFile(file: Upload!): File
   }
   type Subscription {
     newPost: Post!
